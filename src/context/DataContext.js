@@ -1,5 +1,6 @@
 import { createContext, useState, useEffect } from "react";
 import useWindowSize from "../hooks/useWindowSize";
+import api from '../api/apiDataFetch';
 const DataContext = createContext({});
 
 export const DataProvider = ({children}) => {
@@ -12,13 +13,10 @@ export const DataProvider = ({children}) => {
     const [editContent, setEditContent] = useState('');
     const [ID, setId] = useState(0);
     useEffect(() => {
-            const API_URL = 'http://localhost:3500/notes';
             const fetchItems = async () => {
             try{
-            const response = await fetch(API_URL);
-            if(!response.ok) throw Error('data not found');
-            const data = await response.json()
-            setItems(data);
+            const response = await api.get('/notes');
+            setItems(response.data);
             setFetchError(null);
             }
             catch(err){

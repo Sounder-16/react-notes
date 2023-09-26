@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 import { useNavigate } from 'react-router-dom';
 import DataContext from './context/DataContext';
+import api from './api/apiDataFetch'
 export function getMonth(){
     switch((new Date().getMonth())%12+1){
         case 1: return "Jan"
@@ -33,12 +34,7 @@ const Notes = () => {
         if(note.title.length !== 0 && note.content.length !== 0){
         const postData = async () =>{
             try{
-                const URL = 'http://localhost:3500/notes';
-                await fetch(URL, {
-                    method: 'POST',
-                    headers: {"Content-Type":"application/json" },
-                    body: JSON.stringify(note)
-                })
+                await api.post('/notes', note);
                 setItems([...items, note])
             }
             catch(err){
@@ -62,5 +58,4 @@ const Notes = () => {
     </div>
   )
 }
-
-export default Notes
+export default Notes;

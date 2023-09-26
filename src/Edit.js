@@ -2,6 +2,7 @@ import React, { useContext } from 'react'
 import { useNavigate } from 'react-router-dom';
 import {getMonth} from './Notes';
 import DataContext from './context/DataContext';
+import api from './api/apiDataFetch'
 const Edit = () => {
   const navigate = useNavigate();
   const {editTitle, editContent, setEditTitle, setEditContent, items, setItems, ID} = useContext(DataContext);
@@ -16,13 +17,8 @@ const Edit = () => {
       content : editContent
     }
     const updateThings = async () => {
-        const URL = 'http://localhost:3500/notes/'+ID;
         try{
-            await fetch(URL, {
-              method: 'PUT',
-              headers: {'Content-Type':'application/json'},
-              body: JSON.stringify(updatedItem)
-            })
+            await api.put('/notes/'+ID, updatedItem);
             setItems(items.map(item => (
               item.id === updatedItem.id ? updatedItem: item
             )))

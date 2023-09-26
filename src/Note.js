@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 import { useParams, Link, useNavigate } from 'react-router-dom'
 import DataContext from './context/DataContext';
+import api from './api/apiDataFetch';
 const Note = () => {
     const {id} = useParams();
     const {items, setItems, setEditTitle, setEditContent, setId} = useContext(DataContext);
@@ -13,7 +14,7 @@ const Note = () => {
       try{
       const URL = 'http://localhost:3500/notes/'+note.id;
       const deleteItem = async () => {
-        await fetch(URL, {method: 'DELETE'})
+        await api.delete(URL)
         setItems(items.filter(item => (
           item.id !== note.id
         )))
