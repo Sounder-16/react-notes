@@ -1,5 +1,16 @@
 {
   "notes": [
-    
+    {
+      "id": 1,
+      "title": "Batman",
+      "datetime": "Sep 26, 2023  12:56:11 [Edited]",
+      "content": "Im the knight. Im the batman. Im the vengeange"
+    },
+    {
+      "id": 2,
+      "title": "Retro man",
+      "datetime": "Sep 26, 2023  12:54:4",
+      "content": "Killer miller"
+    }
   ]
 }

@@ -7,7 +7,7 @@ function App() {
   return (
     <div className="App">
       <DataProvider>
-        <Header title="React Icons"/>
+        <Header title="React Notes"/>
         <Main />
         <Footer />
       </DataProvider>

@@ -16,5 +16,7 @@ const Header = ({title}) => {
       </header>
   )
 }
-
+Header.defaultProps = {
+  title : "React Notes"
+}
 export default Header
